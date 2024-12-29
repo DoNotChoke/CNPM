@@ -1,0 +1,99 @@
+form .row + .row,
+form div + div {
+    margin-top: 15px;
+}
+form textarea {
+    max-height: 100px;
+}
+
+.med_delete,
+.exit_modal_form {
+    border: none;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+}
+
+.med_delete:hover,
+.exit_modal_form:hover {
+    background-color: red !important;
+    color: #f2e5bf;
+}
+
+.med_edit {
+    border: none;
+    background-color: rgba(0, 128, 0, 0.6);
+    color: white;
+}
+
+.med_edit:hover {
+    background-color: rgb(36, 193, 36) !important;
+    color: #f2e5bf;
+}
+
+.edit_modal {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    display: none;
+    padding: 0px;
+}
+
+.edit_modal form {
+    width: 80%;
+    height: 95%;
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #257180;
+}
+
+#nhap-hang-form,
+#nhap-hang-form-put {
+    width: 90%;
+}
+
+.form_wrapper {
+    display: flex; justify-content: center;
+}
+
+.form_label {
+    width: 22%;
+}
+
+.med_code {
+    width: 3%;
+}
+.med_import-date {
+    width: 8%;
+}
+.med_name {
+    width: 14%;
+}
+.med_price-buy {
+    width: 7%;
+}
+.med_price-sell {
+    width: 7%;
+}
+.med_way {
+    width: 8%;
+}
+.med_effect {
+    width: 20%;
+}
+.med_expire {
+    width: 8%;
+}
+.med_unit {
+    width: 5%;
+}
+.med_quantity {
+    width: 7%;
+}
+.med_action {
+    width: 13%;
+}

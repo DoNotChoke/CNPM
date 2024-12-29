@@ -1,0 +1,21 @@
+.delete_employee {
+    background-color: rgb(255, 0, 0, 0.8);
+    color: white;
+    margin-left: 10px;
+}
+
+.delete_employee:hover {
+    background-color: red;
+    color: #f2e5bf;
+}
+
+.edit_employee {
+    border: none;
+    background-color: rgba(0, 128, 0, 0.6);
+    color: white;
+}
+
+.edit_employee:hover {
+    background-color: rgb(36, 193, 36) !important;
+    color: #f2e5bf;
+}

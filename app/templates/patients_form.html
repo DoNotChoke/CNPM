@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitle</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css">
+</head>
+
+<body style="margin: 0 ;margin-right: 0;margin-left: 0;margin-top: 0;padding-left: 0;padding-right: 0;padding-top: 0;">
+<header style="padding-left: 0;margin: 30px;margin-right: 40px;margin-left: 40px;margin-top: 40px;margin-bottom: 30px;">
+    <div class="row">
+        <div class="col d-flex justify-content-between" style="padding-right: 0px;padding-left: 0px;"><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-return-left" style="margin-right: 5px;">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"></path>
+        </svg>Quản lý bệnh nhân</button><button class="btn btn-primary" type="button" style="font-size: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-house-door-fill" style="font-size: 20px;margin-right: 8px;margin-bottom: 4px;">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"></path>
+        </svg>TRANG CHỦ</button>
+            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="font-size: 18px;max-width: 200px;">BS20224987</button>
+                <div class="dropdown-menu"><a class="dropdown-item" href="#">Thông tin cá nhân</a><a class="dropdown-item" href="#">Đổi mật khẩu</a><a class="dropdown-item" href="#">Đăng xuất</a></div>
+            </div>
+        </div>
+    </div>
+</header>
+<div>
+    <div class="container" style="margin-bottom: 30px;">
+        <h1 style="text-align: center;margin-bottom: 4px;">PHIẾU THÔNG TIN KHÁM CHỮA BỆNH</h1>
+        <p class="text-center" style="font-size: 20px;">Bác sĩ phụ trách vui lòng nhập các thông tin dưới đây để hoàn thiện phiếu khám chữa bệnh</p>
+    </div>
+</div>
+<div class="container">
+    <form>
+        <h3>I. Phần thông tin về bệnh nhân</h3>
+        <div><label class="form-label" for="name">Họ tên :</label><input class="form-control" type="text" id="name"></div>
+        <div><label class="form-label" for="cccd">Số CCCD/CMND :</label><input class="form-control" type="text" id="cccd"></div>
+        <div><label class="form-label" for="age">Tuổi :</label><input class="form-control" type="number" id="age"></div>
+        <div><label class="form-label" for="sex">Giới tính :</label><select class="form-select" id="sex" name="sex">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select></div>
+        <div><label class="form-label" for="phone">Số điện thoại :</label><input class="form-control" type="text" id="phone"></div>
+        <div><label class="form-label" for="email">Email :</label><input class="form-control" type="email" id="email"></div>
+        <div><label class="form-label" for="address">Địa chỉ :</label><input class="form-control" type="text" id="address"></div>
+        <h3>II. Phần khám chữa bệnh:&nbsp;</h3>
+        <div><label class="form-label" for="check_date">Ngày khám :</label><input class="form-control" id="check_date" type="date"></div>
+        <div><label class="form-label" for="check_symptom">Triệu chứng :</label><input class="form-control" type="text" id="check_symptom"></div>
+        <div><label class="form-label" for="check_diagnosis">Chẩn đoán :</label><input class="form-control" type="text" id="check_diagnosis" style="height: 37.6px;"></div>
+        <div><label class="form-label" for="check_treatment">Chỉ định điều trị :</label><input class="form-control" type="text" id="check_treatment"></div>
+        <div><label class="form-label" for="check_doctor">Bác sĩ phụ trách :</label><input class="form-control" type="text" id="check_doctor"></div>
+    </form><input class="btn btn-primary" type="submit" value="Hoàn thành">
+</div>
+<footer class="text-center py-4" style="border-top-width: 1px;border-top-style: solid;margin-top: 30px;">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-3">
+            <div class="col-xl-6">
+                <p class="text-muted my-2" style="font-size: 22px;text-align: left;"><strong>IT3080: NHẬP MÔN CÔNG NGHỆ PHẦN MỀM</strong></p>
+                <p style="text-align: left;font-size: 20px;"><strong>Mã lớp học</strong>: 154020 - 2024.1</p>
+                <p style="text-align: left;font-size: 20px;"><strong>Giảng viên hướng dẫn</strong>: TS. Trần Nhật Hóa</p>
+            </div>
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col" style="border-left: 1px solid var(--bs-body-color) ;">
+                        <p style="font-size: 25px;font-weight: bold;">Danh sách sinh viên</p>
+                    </div>
+                    <div class="col-xl-5">
+                        <ul class="list-group" style="border-style: none;">
+                            <li class="list-group-item" style="border-style: none;"><span>Chu Tuấn Nghĩa</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>Dương Vũ Hoàng</span></li>
+                            <li class="list-group-item text-center" style="border-style: none;"><span>Nguyễn Thành Trung</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>Võ Tá Tuấn</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>Đặng Hải Đăng</span></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <ul class="list-group">
+                            <li class="list-group-item" style="border-style: none;"><span>20225056</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>20224987</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>20225105</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>20224904</span></li>
+                            <li class="list-group-item" style="border-style: none;"><span>20224944</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<header style="padding-left: 0px;margin: 30px;margin-right: 40px;margin-left: 40px;margin-top: 40px;margin-bottom: 30px;">
+    <div class="row">
+        <div class="col d-flex justify-content-between" style="padding-right: 0px;padding-left: 0px;"><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-return-left" style="margin-right: 5px;">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"></path>
+        </svg>Quản lý bệnh nhân</button><button class="btn btn-primary" type="button" style="font-size: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-house-door-fill" style="font-size: 20px;margin-right: 8px;margin-bottom: 4px;">
+            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"></path>
+        </svg>TRANG CHỦ</button>
+            <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="font-size: 18px;max-width: 200px;">BS20224987</button>
+                <div class="dropdown-menu"><a class="dropdown-item" href="#">Thông tin cá nhân</a><a class="dropdown-item" href="#">Đổi mật khẩu</a><a class="dropdown-item" href="#">Đăng xuất</a></div>
+            </div>
+        </div>
+    </div>
+</header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

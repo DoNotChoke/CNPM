@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="{{ url_for('static', filename='login/login.js') }}"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login/login.css') }}">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.0/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.0/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+<div id="wrapper" class="row">
+    <div class="system__logo">
+        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="">
+
+        <div class="system__name">
+            <p class="system__name--short">CMS</p>
+            <p class="system__name--full">Clinic Management System</p>
+        </div>
+    </div>
+
+    <div class="form__login">
+        <p class="form__login-heading">Đăng Nhập</p>
+        <form class="form__control" action="" method="">
+            <input class="form__username" type="text" name="username" required placeholder="Tên tài khoản ...">
+            <input class="form__password" type="password" name="password" required placeholder="Mật khẩu ...">
+            <button class="form__submit" type="submit">Đăng Nhập</button>
+        </form>
+        <p class="ask__for--signup">
+            <span>Bạn chưa có tài khoản?</span>
+            <a href="/signup">Đăng Ký</a>
+        </p>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>QuanLyKhoThuoc</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{{ url_for('static', filename='medicine/medicine.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='medicine/medicine.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.0/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.0/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body style="height: 100vh;">
+<div style="height: 100%;position: relative;">
+
+    <!-- Phần header không cần động vào -->
+    <header
+            style="padding-left: 3px;margin: 30px;margin-right: 40px;margin-left: 40px;margin-top: 0;margin-bottom: 50px;padding-top: 40px;">
+        <div class="row">
+            <div class="col d-flex justify-content-between" style="padding-right: 0px;padding-left: 0px;">
+                <button id="back_to_homepage" class="btn btn-primary" type="button" onclick="window.location.href='/homepage';">
+                    <i class="fa fa-chevron-left" style="margin-right: 10px;"></i>
+                    Trang chủ
+                </button>
+                <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false"
+                                              data-bs-toggle="dropdown" type="button">
+                    {% if session['username'] %}
+                        {{ session['username'] }}
+                    {% else %}
+                        Chưa đăng nhập
+                    {% endif %}
+                </button>
+                    <div class="dropdown-menu"><a class="dropdown-item" href="#">Đăng xuất</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="margin-top: 30px;margin-bottom: 30px;">
+                <h1 style="text-align: center;margin-top: 0px;margin-bottom: 50px;">QUẢN LÝ KHO THUỐC</h1>
+                <div class="d-flex justify-content-around align-items-center"
+                     style="margin-bottom: 0px;margin-right: 0px;">
+                    <div>
+                        <i class="fa fa-search"
+                           style="margin-right: 12px;font-size: 24px;margin-top: 0px;margin-bottom: 0px;"></i>
+                        <input id="search-input" type="search" placeholder="Tìm kiếm ..."
+                               style="padding-left: 10px;padding-top: 5px;padding-bottom: 5px;width: 500px;">
+
+                    </div>
+                    <button class="add_new_medicine btn btn-primary" type="button" data-bs-toggle="modal"
+                            data-bs-target="#formNhapHangModal">
+                        <i class="fa fa-plus"
+                           style="margin-right: 9px; margin-bottom: 3px; font-size: 18px;"></i>Nhập hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="search-results" style="margin-top: 20px;"></div>
+
+    </header>
+    <div class="container" style="min-height: 500px;">
+        <div class="row">
+            <div class="col d-inline-block">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="med_code">Mã</th>
+                            <th class="med_import-date">Ngày nhập</th>
+                            <th class="med_name">Tên sản phẩm</th>
+                            <th class="med_price-buy">Giá nhập</th>
+                            <th class="med_price-sell">Giá bán</th>
+                            <th class="med_way">Đường dùng</th>
+                            <th class="med_effect">Công dụng</th>
+                            <th class="med_expire">Hạn sử dụng</th>
+                            <th class="med_unit">Đơn vị</th>
+                            <th class="med_quantity">Số lượng</th>
+                            <th class="med_action">Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for medicine in medicines %}
+                            <tr>
+                                <td class="med_code">{{ medicine.id }}</td>
+                                <td class="med_import-date">{{ medicine.date_in.strftime('%Y-%m-%d') }}</td>
+                                <td class="med_name">{{ medicine.name }}</td>
+                                <td class="med_price-buy">{{ medicine.price_buy }}</td>
+                                <td class="med_price-sell">{{ medicine.price_sell }}</td>
+                                <td>{{ medicine.usage_ }}</td>
+                                <td>{{ medicine.effect }}</td>
+                                <td class="med_expire">{{ medicine.expiry_date.strftime('%Y-%m-%d') }}</td>
+                                <td class="med_unit">{{ medicine.unit }}</td>
+                                <td class="med_quantity">{{ medicine.quantity }}</td>
+                                <td>
+                                    <!-- Nút ấn để chỉnh sửa -->
+                                    <button class="med_edit btn" type="button" data-bs-toggle="modal" data-bs-target="#formNhapHangModalPut"
+                                            data-id="{{ medicine.id }}" style="width: 40px;height: 40px;margin-right: 10px;">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+
+                                    <!-- Nút ấn để xóa -->
+                                    <button class="med_delete btn" type="button" data-id="{{ medicine.id }}" style="width: 40px;height: 40px;">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer không cần động vào -->
+    <footer class="text-center py-4"
+            style="/*right: 0;*//*left: 0;*//*bottom: 0;*//*position: absolute;*/border-top-width: 1px;border-top-style: solid;">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-3">
+                <div class="col-xl-6">
+                    <p class="text-muted my-2" style="font-size: 22px;text-align: left;"><strong>IT3080: NHẬP MÔN
+                        CÔNG NGHỆ PHẦN MỀM</strong></p>
+                    <p style="text-align: left;font-size: 20px;"><strong>Mã lớp học</strong>: 154020 - 2024.1</p>
+                    <p style="text-align: left;font-size: 20px;"><strong>Giảng viên hướng dẫn</strong>: TS. Trần
+                        Nhật Hóa</p>
+                </div>
+                <div class="col-xl-6">
+                    <div class="row">
+                        <div class="col border-footer">
+                            <p style="font-size: 25px;font-weight: bold;">Danh sách sinh viên</p>
+                        </div>
+                        <div class="col-xl-5">
+                            <ul class="list-group" style="border-style: none;">
+                                <li class="list-group-item" style="border-style: none;"><span>Chu Tuấn Nghĩa</span>
+                                </li>
+                                <li class="list-group-item" style="border-style: none;"><span>Dương Vũ Hoàng</span>
+                                </li>
+                                <li class="list-group-item text-center" style="border-style: none;">
+                                    <span>Nguyễn Thành Trung</span></li>
+                                <li class="list-group-item" style="border-style: none;"><span>Võ Tá Tuấn</span></li>
+                                <li class="list-group-item" style="border-style: none;"><span>Đặng Hải Đăng</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <ul class="list-group">
+                                <li class="list-group-item" style="border-style: none;"><span>20225056</span></li>
+                                <li class="list-group-item" style="border-style: none;"><span>20224987</span></li>
+                                <li class="list-group-item" style="border-style: none;"><span>20225105</span></li>
+                                <li class="list-group-item" style="border-style: none;"><span>20224904</span></li>
+                                <li class="list-group-item" style="border-style: none;"><span>20224944</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal (Form nhập hàng) -->
+    <div class="modal fade" id="formNhapHangModal" tabindex="-1" aria-labelledby="formNhapHangModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--                        <h5 class="modal-title" id="formNhapHangModalLabel">-->
+                    <!--                            NHẬP MỚI hoặc CHỈNH SỬA THÔNG TIN THUỐC-->
+                    <!--                        </h5>-->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body form_wrapper">
+                    <form id="nhap-hang-form">
+                        <input type="hidden" id="thuoc_id" name="id" value="{{thuoc_id}}" /> <!-- Trường ẩn để lưu ID thuốc -->
+                        <!-- Các trường nhập thông tin -->
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Ngày nhập:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="date" id="ngay_nhap" name="date_in"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Tên thuốc:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="text" id="ten_thuoc" name="name"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Đường dùng:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="text" id="duong_dung"
+                                                    name="usage_" required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Hạn sử dụng:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="date" id="han_su_dung"
+                                                    name="expiry_date" required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Công dụng:</h5>
+                            </div>
+                            <div class="col"><textarea class="form-control" id="cong_dung" name="effect"
+                                                       required></textarea></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Ghi chú:</h5>
+                            </div>
+                            <div class="col"><textarea class="form-control" id="ghi_chu" name="note"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Giá nhập:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="number" id="gia_nhap" name="price_buy"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Giá bán:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="number" id="gia_ban" name="price_sell"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Đơn vị:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="text" id="don_vi" name="unit"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Số lượng:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="number" id="so_luong" name="quantity"
+                                                    required></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save" style="margin-right: 10px; font-size: 18px;"></i>Lưu
+                            </button>
+                            <button type="button" class="exit_modal_form btn" data-bs-dismiss="modal">
+                                <i class="fa fa-close" style="font-size: 18px; margin-right: 10px;"></i>Thoát
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal (Form nhập hàng) - PUT -->
+    <div class="modal fade" id="formNhapHangModalPut" tabindex="-1" aria-labelledby="formNhapHangModalPutLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--                        <h5 class="modal-title" id="formNhapHangModalLabel">-->
+                    <!--                            NHẬP MỚI hoặc CHỈNH SỬA THÔNG TIN THUỐC-->
+                    <!--                        </h5>-->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body form_wrapper">
+                    <form id="nhap-hang-form-put">
+                        <input type="hidden" id="thuoc_id_put" name="id" value="" /> <!-- Trường ẩn để lưu ID thuốc -->
+                        <!-- Các trường nhập thông tin -->
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Ngày nhập:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="date" id="ngay_nhap_put" name="date_in"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Tên thuốc:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="text" id="ten_thuoc_put" name="name"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Đường dùng:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="text" id="duong_dung_put"
+                                                    name="usage_" required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Hạn sử dụng:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="date" id="han_su_dung_put"
+                                                    name="expiry_date" required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Công dụng:</h5>
+                            </div>
+                            <div class="col"><textarea class="form-control" id="cong_dung_put" name="effect"
+                                                       required></textarea></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Ghi chú:</h5>
+                            </div>
+                            <div class="col"><textarea class="form-control" id="ghi_chu_put" name="note"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Giá nhập:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="number" id="gia_nhap_put" name="price_buy"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Giá bán:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="number" id="gia_ban_put" name="price_sell"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Đơn vị:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="text" id="don_vi_put" name="unit"
+                                                    required></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-2 form_label">
+                                <h5>Số lượng:</h5>
+                            </div>
+                            <div class="col"><input class="form-control" type="number" id="so_luong_put" name="quantity"
+                                                    required></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save" style="margin-right: 10px; font-size: 18px;"></i>Lưu
+                            </button>
+                            <button type="button" class="exit_modal_form btn" data-bs-dismiss="modal">
+                                <i class="fa fa-close" style="font-size: 18px; margin-right: 10px;"></i>Thoát
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Bootstrap JS & Dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

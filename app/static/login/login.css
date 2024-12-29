@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+:root {
+    --primary-color-01: #257180;
+    --primary-color-03: #F2E5BF;
+    --primary-color-04: #FD8B51;
+    --primary-color-02: #CB6040;
+}
+
+.row {
+    width: 100%;
+}
+
+.col-half {
+    width: 50%;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: 110px 150px;
+    background-color: var(--primary-color-01);
+    height: 100vh;
+}
+
+.system__logo {
+    text-align: center;
+    color: var(--primary-color-03);
+}
+
+.system__logo img {
+    width: 400px;
+}
+
+.system__name--short {
+    margin-top: 20px;
+    font-weight: 800;
+    font-size: 50px;
+    letter-spacing: 4px;
+}
+
+.system__name--full {
+    font-size: 30px;
+}
+
+.form__login {
+    background-color: white;
+    padding: 40px;
+    border-radius: 50px;
+}
+
+.form__login-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: var(--primary-color-02);
+}
+
+.form__control {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+.form__control input {
+    margin-bottom: 24px;
+    border-radius: 10px;
+    height: 40px;
+    width: 300px;
+    padding: 0 8px;
+    border: 2px solid var(--primary-color-01);
+}
+
+.form__control input::placeholder {
+    color: var(--primary-color-02);
+}
+
+.form__username {
+
+}
+
+.form__password {
+
+}
+
+.form__submit {
+    border: none;
+    background-color: var(--primary-color-04);
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 40px;
+    width: 70%;
+    margin: auto;
+}
+
+.form__submit:hover {
+    cursor: pointer;
+    background-color: var(--primary-color-03);
+    color: var(--primary-color-02);
+}
+
+.ask__for--signup {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--primary-color-02);
+}
+
+.ask__for--signup a {
+    color: var(--primary-color-01);
+    font-weight: 500;
+}
+
+.ask__for--signup a:hover {
+    color: rgba(37, 113, 128, 0.7);
+}

@@ -1,0 +1,76 @@
+tbody td {
+    word-wrap: break-word; /* Tự động xuống dòng nếu quá dài */
+    overflow-wrap: break-word;
+    white-space: normal; /* Cho phép xuống dòng */
+}
+
+footer {
+    background-color: #257180;
+    color: #f2e5bf;
+}
+
+footer strong {
+    color: #f2e5bf;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #257180;
+}
+
+.btn-primary {
+    background-color: #257180;
+}
+
+.btn:hover {
+    background-color: #CB6040;
+}
+
+.btn:active {
+    background-color: #257180;
+}
+
+.btn:first-child:active {
+    background-color: #257180;
+}
+
+.btn:focus-visible {
+    background-color: #257180;
+}
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+    background-color: #257180;
+}
+
+.list-group {
+    --bs-list-group-bg: transparent;
+    --bs-list-group-color: #f2e5bf;
+}
+
+.border-footer {
+    border-left: 1px solid #F2E5BF;
+}
+input {
+    word-wrap: break-word; /* Tự động xuống dòng nếu quá dài */
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.border-footer {
+    border-left: 1px solid #F2E5BF ;
+}
+
+textarea {
+    margin-bottom: 20px;
+}
+
+td  a {
+    color: #257180;
+}
+
+.swal2-styled.swal2-delete {
+    margin-right: 10px;
+}
